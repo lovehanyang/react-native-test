@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react";
 import Detail from "./detail";
+import Screen from './Screen'
 import {
     Alert,
     AsyncStorage,
@@ -38,7 +39,7 @@ const circleMargin = 5;
 const advertisementCount = 3;
 const indicatorWidth =
     circleSize * advertisementCount + circleMargin * advertisementCount * 2;
-const left = (Dimensions.get("window").width - indicatorWidth) / 2;
+const left = (Screen.width - indicatorWidth) / 2;
 const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2
 });
@@ -100,6 +101,8 @@ export default class home extends Component {
     }
 
     render() {
+
+
         return (
             <Container>
 
@@ -244,7 +247,7 @@ export default class home extends Component {
                 this.setState({
                     isRefreshing: false,
                     dataSource: ds.cloneWithRows(JSON.parse(values)),
-                     isNetworkValid: false
+                    isNetworkValid: false
                 });
 
             })
@@ -263,7 +266,7 @@ export default class home extends Component {
                 nextPage = 0;
             }
             this.setState({currentPage: nextPage});
-            const offsetX = nextPage * Dimensions.get("window").width;
+            const offsetX = nextPage * Screen.width;
             this.refs.scrollView.scrollResponderScrollTo({
                 x: offsetX,
                 y: 0,

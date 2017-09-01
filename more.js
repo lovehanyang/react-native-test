@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import Screen from './Screen'
 import {ActivityIndicator, Dimensions,Picker, Slider, StyleSheet, Switch, Text, View, WebView} from "react-native";
 
 export default class more extends React.Component {
@@ -59,6 +60,13 @@ export default class more extends React.Component {
                 }}
                 value={this.state.isOn === true}
                 />
+
+                <Text style={styles.text}>width:{Screen.width}</Text>
+                <Text style={styles.text}>height:{Screen.height}</Text>
+                <Text style={styles.text}>PixelRatio:{Screen.pixelRatio}</Text>
+                <Text style={styles.text}>resolutionX:{Screen.resolutionX}</Text>
+                <Text style={styles.text}>resolutionY:{Screen.resolutionY}</Text>
+
                 <WebView
                 source={{uri:'https://sina.cn'}}
                 style={styles.web}/>
