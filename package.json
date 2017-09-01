@@ -1,0 +1,54 @@
+{
+  "name": "ch02",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "flow": "flow"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^5.1.0",
+    "ansi-escapes": "^2.0.0",
+    "asap": "^2.0.6",
+    "brace-expansion": "^1.1.8",
+    "cli-cursor": "^2.1.0",
+    "cli-width": "^2.1.0",
+    "color-convert": "^1.9.0",
+    "encoding": "^0.1.12",
+    "external-editor": "^2.0.4",
+    "fbjs": "^0.8.14",
+    "figures": "^2.0.0",
+    "fs.realpath": "^1.0.0",
+    "has-flag": "^2.0.0",
+    "image-size": "^0.6.1",
+    "inflight": "^1.0.6",
+    "is-builtin-module": "^1.0.0",
+    "is-fullwidth-code-point": "^2.0.0",
+    "is-stream": "^1.1.0",
+    "mute-stream": "0.0.7",
+    "native-base": "^2.3.1",
+    "process-nextick-args": "^1.0.7",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.47.1",
+    "react-native-deprecated-custom-components": "^0.1.1",
+    "react-native-drawer": "^2.4.0",
+    "react-native-swiper": "^1.5.10",
+    "react-native-vector-icons": "^4.3.0",
+    "run-async": "^2.3.0",
+    "rx-lite-aggregates": "^4.0.8",
+    "through": "^2.3.8",
+    "uglify-js": "^3.0.28",
+    "validate-npm-package-license": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "20.0.3",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react-native": "2.1.0",
+    "flow-bin": "^0.52.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
