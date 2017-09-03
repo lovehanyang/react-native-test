@@ -14,6 +14,9 @@ import {
     ScrollView,
     StyleSheet,
     TouchableHighlight,
+    ToastAndroid,
+    BackAndroid,
+    AppState,
     View
 } from "react-native";
 
@@ -48,6 +51,7 @@ export default class home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentAppState: AppState.currentState,
             isRefreshing: false,
             isNetworkValid: false,
             currentPage: 0,
@@ -219,8 +223,45 @@ export default class home extends Component {
     }
 
     componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange)
         // this._startTimer();
-        this._fetchProduct();
+        // this._fetchProduct();
+        if(Platform.OS === 'android'){
+            BackAndroid.addEventListener('hardwareBackPress',this._onBackAndroid)
+        }
+    }
+
+    componentWillUnmount() {
+        AppState.addEventListener('change', this._handleAppStateChange)
+        clearInterval(this.interval);
+        if(Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this._onBackAndroid)
+        }
+    }
+
+    _onBackAndroid = ()=> {
+        Alert.alert('您点击了返回键', null, null)
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            return false;
+        }
+
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+        return true;
+    }
+
+
+
+
+
+    _handleAppStateChange = (nextAppState) => {
+        if (nextAppState === 'inactive' ||
+            nextAppState === 'background') {
+            console.log('应用进入后台')
+        } else {
+            console.log('应用进入前台')
+        }
+        this.setState({currentAppState: nextAppState})
     }
 
     _fetchProduct() {
@@ -255,9 +296,6 @@ export default class home extends Component {
         });
     }
 
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 
     _startTimer() {
         this.interval = setInterval(() => {
