@@ -261,7 +261,7 @@ export default class home extends Component {
         } else {
             console.log('应用进入前台')
         }
-        this.setState({currentAppState: nextAppState})
+        // this.setState({currentAppState: nextAppState})
     }
 
     _fetchProduct() {

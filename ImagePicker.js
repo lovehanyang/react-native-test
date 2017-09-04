@@ -4,16 +4,25 @@
 
 
 import React from "react";
-import {StyleSheet, TouchableOpacity, View,Text} from "react-native";
+import {Image, NativeModules, Platform,StyleSheet, Text, TouchableOpacity, View} from "react-native";
 export default class ImagePicker extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {avatarSource: null}
+    }
 
     render() {
         return (
 
             <View style={styles.container}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this._selectPhotoTapped}>
                     <View style={[styles.avatarContainer, styles.avatar]}>
-                        <Text style={styles.text}>选择图片</Text>
+                        {this.state.avatarSource === null?
+                            <Text style={styles.text}>选择图片</Text>
+                            :<Image style={styles.avatar} source={this.state.avatarSource}/>
+                        }
+
 
                     </View>
                 </TouchableOpacity>
@@ -21,6 +30,38 @@ export default class ImagePicker extends React.Component {
 
             </View>
         );
+    }
+
+    _selectPhotoTapped = () => {
+
+        const options = {
+            quality: 1.0,
+            maxWidth: 500,
+            maxHeight: 500
+        }
+        NativeModules.ImagePicker.launchImagePicker(options,
+            (response) => {
+                if (response.didCancel) {
+                    console.log("用户取消选择")
+                } else if (response.error) {
+                    console.log("选择图片错误", response.error)
+                } else {
+                    let source;
+                    if (Platform.OS === 'ios') {
+                        source = {
+                            uri: response.uri.replace('file://', '')
+                        }
+                    } else if (Platform.OS === 'android') {
+                        source = {
+                            uri: response.uri
+                        }
+                        console.log("hahah")
+                    }
+                    console.log("123456")
+                    this.setState({avatarSource: source})
+                }
+
+            })
     }
 
 

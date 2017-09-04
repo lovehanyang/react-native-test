@@ -26,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new MainReactPackage(),
                     new VectorIconsPackage(),
                     new PlatformPackage(),
-                    new DeviceInfoPackage()
+                    new DeviceInfoPackage(),
+                    new ImagePickerPackage()
             );
         }
     };
