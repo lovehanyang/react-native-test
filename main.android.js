@@ -4,6 +4,7 @@ import {Badge, Button, Container, Content, Footer, FooterTab, Icon, Text} from "
 import Home from "./home";
 import More from "./more";
 import More2 from "./more2";
+import More3 from './more3'
 
 export default class main extends React.Component {
     constructor(props) {
@@ -49,7 +50,19 @@ export default class main extends React.Component {
 
                         <Icon name='ios-compass-outline'/>
                         <Text>
-                            更更多
+                            自定义组件
+                        </Text>
+                    </Button>
+
+                    <Button active={this.state.selectedTab === 'more3'}
+                            onPress={() => {
+                                this.setState({selectedTab: 'more3'})
+                            }}
+                    >
+
+                        <Icon name='ios-compass-outline'/>
+                        <Text>
+                            通信
                         </Text>
                     </Button>
 
@@ -78,6 +91,12 @@ export default class main extends React.Component {
             return (
                 <Content>
                     <More2 navigator={this.props.navigator}/>
+                </Content>
+            )
+        }else if (this.state.selectedTab == 'more3') {
+            return (
+                <Content>
+                    <More3 navigator={this.props.navigator}/>
                 </Content>
             )
         }
